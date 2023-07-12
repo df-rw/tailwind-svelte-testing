@@ -51,6 +51,7 @@
         <h1 class="text-xl">Tailwind doc reference</h1>
         <ul class="list-disc m-4">
             <li><a class="hover:underline" target="_blank" href="https://tailwindcss.com/docs/adding-custom-styles">Adding Custom Styles</a></li>
+            <li><a class="hover:underline" target="_blank" href="https://tailwindcss.com/docs/reusing-styles">Reusing Styles</a></li>
             <li><a class="hover:underline" target="_blank" href="https://tailwindcss.com/docs/adding-custom-styles#adding-component-classes">Adding component classes</a></li>
             <li><a class="hover:underline" target="_blank" href="https://github.com/tailwindlabs/tailwindcss-forms">TailwindCSS Forms plugin</a></li>
             <li><a class="hover:underline" target="_blank" href="https://tailwindcss.com/docs/plugins#css-in-js-syntax">CSS-in-JS syntax</a></li>
