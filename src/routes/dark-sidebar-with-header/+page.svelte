@@ -676,14 +676,14 @@
                                 <!-- Active: "bg-gray-50", Not Active: "" -->
                                 <a
                                     href="#"
-                                    class="block px-3 py-1 text-sm leading-6 text-gray-900"
+                                    class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-0">Your profile</a
                                 >
                                 <a
                                     href="#"
-                                    class="block px-3 py-1 text-sm leading-6 text-gray-900"
+                                    class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-1">Sign out</a

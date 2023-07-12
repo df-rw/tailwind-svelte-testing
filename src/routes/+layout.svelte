@@ -2,4 +2,9 @@
     import "../app.css";
 </script>
 
-<slot />
+<div class="m-4">
+    <a href="/" class="underline">home</a>
+    <hr class="mt-4" />
+
+    <slot />
+</div>

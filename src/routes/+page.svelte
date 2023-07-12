@@ -30,13 +30,21 @@
             title: 'Dividers',
             route: '/dividers',
         },
+        {
+            tailwindReference: 'https://tailwindui.com/components/application-ui/forms/comboboxes',
+            title: 'Comboboxes',
+            route: '/comboboxes',
+        },
+        {
+            tailwindReference: 'https://tailwindui.com/components/application-ui/forms/input-groups',
+            title: 'Input Groups',
+            route: '/input-groups',
+        }
     ];
 </script>
 
 <div class="m-4">
     <div>
-        <hr class="mt-4 mb-4" />
-
         <h1 class="text-xl">Samples</h1>
         <ul class="list-disc m-4">
             {#each samples as sample}
