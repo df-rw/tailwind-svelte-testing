@@ -7,6 +7,9 @@
 
     const toggleMenu = () => {
         showSidebar = !showSidebar;
+        if (showSidebar) {
+            showUserMenu = false;
+        }
     };
 
     const toggleUserMenu = () => {
