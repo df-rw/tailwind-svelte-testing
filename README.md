@@ -7,7 +7,6 @@ npm install
 npm run dev
 ```
 
-
 ## Tailwind notes
 
 -   Default install for sveltekit: https://tailwindcss.com/docs/guides/sveltekit

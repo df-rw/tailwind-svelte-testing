@@ -101,7 +101,7 @@
       -->
                 {#each possibles as p}
                     <li
-                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:text-white hover:bg-indigo-600"
+                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-indigo-600 hover:text-white"
                         id="option-0"
                         role="option"
                         tabindex="-1"

@@ -17,13 +17,13 @@
 
 <div class="m-4">
     <h1 class="text-2xl">Inputs</h1>
-    <ul class="list-disc m-4">
+    <ul class="m-4 list-disc">
         {#each types as type}
             <li><input {type} placeholder={type} /></li>
         {/each}
     </ul>
 
-    <hr class="mt-4 mb-4" />
+    <hr class="mb-4 mt-4" />
 
     <h1 class="text-2xl">checkboxes</h1>
     <ul>
@@ -32,7 +32,7 @@
         <li><label><input type="checkbox" />three</label></li>
     </ul>
 
-    <hr class="mt-4 mb-4" />
+    <hr class="mb-4 mt-4" />
 
     <h1 class="text-2xl">radio group</h1>
     <ul>
@@ -41,7 +41,7 @@
         <li><label><input type="radio" name="radio-group" />three</label></li>
     </ul>
 
-    <hr class="mt-4 mb-4" />
+    <hr class="mb-4 mt-4" />
 
     <h1 class="text-2xl">buttons</h1>
     <ul>
@@ -52,7 +52,7 @@
         </li>
     </ul>
 
-    <hr class="mt-4 mb-4" />
+    <hr class="mb-4 mt-4" />
 
     <h1 class="text-2xl">select</h1>
     <ul class="pb-8">
