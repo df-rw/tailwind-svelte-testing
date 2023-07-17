@@ -7,7 +7,7 @@
         business: string;
     }
 
-    const names: Person[] = [
+    const people: Person[] = [
         { name: 'Alice', email: 'Alice@foo.com', business: 'Alice productions' },
         { name: 'Bob', email: 'Bob@foo.com', business: 'Bob productions' },
         { name: 'Carol', email: 'Carol@foo.com', business: 'Carol productions' },
@@ -37,7 +37,7 @@
 
         await stall(1);
 
-        return names.filter((n) => n.name.toLowerCase().includes(lowerS));
+        return people.filter((n) => n.name.toLowerCase().includes(lowerS));
     };
 
     let timeout: ReturnType<typeof setTimeout>;
@@ -117,5 +117,12 @@
         {/if}
     </div>
 
-    <p>here's some more stuff</p>
+    <p>Choose from:</p>
+    <ul class="ml-4 list-disc">
+        {#each people as person}
+            <li>
+                {person.name}
+            </li>
+        {/each}
+    </ul>
 </div>

@@ -44,6 +44,11 @@
             title: 'Input Groups',
             route: '/input-groups',
         },
+        {
+            tailwindReference: 'https://tailwindcss.com/docs/ring-width',
+            title: 'Ring width',
+            route: '/ring-width',
+        },
     ];
 </script>
 
