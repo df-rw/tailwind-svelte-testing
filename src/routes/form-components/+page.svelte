@@ -64,6 +64,13 @@
             </select>
         </li>
         <li>
+            styled from app.css <select class="styled-app-css">
+                <option>one</option>
+                <option>two</option>
+                <option>three</option>
+            </select>
+        </li>
+        <li>
             <a
                 href="https://tailwindui.com/components/application-ui/forms/select-menus#component-79592f355ca6f6e3b081e0158109981c"
                 class="hover:underline">simple native (from tailwind-ui)</a

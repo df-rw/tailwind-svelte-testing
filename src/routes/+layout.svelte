@@ -6,5 +6,6 @@
     <a href="/" class="underline">home</a>
     <hr class="mt-4" />
 
-    <slot />
 </div>
+
+<slot />
