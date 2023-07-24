@@ -50,6 +50,7 @@
             <button type="button" class="local-button">locally-styled button</button> (see
             <code>&lt;style&gt;</code> tag in the code for this page)
         </li>
+        <li><button type="button" class="refer">a refer button</button></li>
     </ul>
 
     <hr class="mb-4 mt-4" />

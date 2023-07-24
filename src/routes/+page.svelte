@@ -4,51 +4,58 @@
             tailwindReference:
                 'https://tailwindui.com/components/application-ui/application-shells/sidebar#component-5548358cb34897c6b28551f2ad885eec',
             title: 'Dark sidebar with header',
-            route: '/dark-sidebar-with-header',
+            route: '/samples/dark-sidebar-with-header',
         },
         {
             tailwindReference: 'https://tailwindcss.com/docs/plugins#forms',
             title: 'Form components',
-            route: '/form-components',
+            route: '/samples/form-components',
         },
         {
             tailwindReference: 'https://tailwindui.com/components/application-ui/navigation/steps',
             title: 'Steppers',
-            route: '/steps',
+            route: '/samples/steps',
         },
         {
             tailwindReference:
                 'https://tailwindui.com/components/application-ui/overlays/slide-overs',
             title: 'Slide overlays (basic)',
-            route: '/slide-overlay-basic',
+            route: '/samples/slide-overlay-basic',
         },
         {
             tailwindReference:
                 'https://tailwindui.com/components/application-ui/overlays/slide-overs#component-b76ed25b74c40b7f3a181393e2b7742f',
             title: 'Slide overlays (with form)',
-            route: '/slide-overlay-with-form',
+            route: '/samples/slide-overlay-with-form',
         },
         {
             tailwindReference: 'https://tailwindui.com/components/application-ui/layout/dividers',
             title: 'Dividers',
-            route: '/dividers',
+            route: '/samples/dividers',
         },
         {
             tailwindReference: 'https://tailwindui.com/components/application-ui/forms/comboboxes',
             title: 'Comboboxes',
-            route: '/comboboxes',
+            route: '/samples/comboboxes',
         },
         {
             tailwindReference:
                 'https://tailwindui.com/components/application-ui/forms/input-groups',
             title: 'Input Groups',
-            route: '/input-groups',
+            route: '/samples/input-groups',
         },
         {
             tailwindReference: 'https://tailwindcss.com/docs/ring-width',
             title: 'Ring width',
-            route: '/ring-width',
+            route: '/samples/ring-width',
         },
+    ];
+
+    const tests = [
+        {
+            title: 'Allocator config',
+            route: '/tests/allocator-config',
+        }
     ];
 </script>
 
@@ -62,6 +69,17 @@
                         class="hover:underline"
                         href={sample.tailwindReference}>tailwind docs</a
                     >)
+                </li>
+            {/each}
+        </ul>
+    </div>
+
+    <div>
+        <h1 class="text-xl">Tests</h1>
+        <ul class="m-4 list-disc">
+            {#each tests as test}
+                <li>
+                    <a class="hover:underline" href={test.route}>{test.title}</a>
                 </li>
             {/each}
         </ul>
