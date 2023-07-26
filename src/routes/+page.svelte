@@ -55,7 +55,11 @@
         {
             title: 'Allocator config',
             route: '/tests/allocator-config',
-        }
+        },
+        {
+            title: 'Notification settings',
+            route: '/tests/notification-settings',
+        },
     ];
 </script>
 

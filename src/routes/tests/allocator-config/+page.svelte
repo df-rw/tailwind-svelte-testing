@@ -24,7 +24,7 @@
     const offices = ['Ray White New Farm', 'Ray White West End', 'Ray White Bulimba'];
     let chosenOffice = offices[0];
 
-    let allocationOptionsOffice: string = [];
+    let allocationOptionsOffice: string[] = [];
 </script>
 
 <div class="m-4">
@@ -42,7 +42,7 @@
 </div>
 
 <div class="m-4">
-    <fieldset class="border border-solid border-gray-700 p-4 grid">
+    <fieldset class="grid border border-solid border-gray-700 p-4">
         <legend>Corporate view - Allocation options for states</legend>
 
         <div>
@@ -58,7 +58,8 @@
         <div>
             {#each stateOptions as s}
                 <div>
-                    <input type="checkbox" bind:group={allocationOptions} value={s} /> {s}
+                    <input type="checkbox" bind:group={allocationOptions} value={s} />
+                    {s}
                 </div>
             {/each}
         </div>
@@ -96,13 +97,13 @@
         <div>
             {#each officeOptions as s}
                 <div>
-                    <input type="checkbox" bind:group={allocationOptionsOffice} value={s} /> {s}
+                    <input type="checkbox" bind:group={allocationOptionsOffice} value={s} />
+                    {s}
                 </div>
             {/each}
         </div>
     </fieldset>
 </div>
-
 
 <div class="m-4">
     <fieldset class="border border-solid border-gray-700 p-4">
