@@ -1,44 +1,14 @@
 <script lang="ts">
+    import type { Person } from './types';
     import { createEventDispatcher } from 'svelte';
 
-    interface Person {
-        name: string;
-        email: string;
-        business: string;
-    }
-
-    const people: Person[] = [
-        { name: 'Alice', email: 'Alice@foo.com', business: 'Alice productions' },
-        { name: 'Bob', email: 'Bob@foo.com', business: 'Bob productions' },
-        { name: 'Carol', email: 'Carol@foo.com', business: 'Carol productions' },
-        { name: 'David', email: 'David@foo.com', business: 'David productions' },
-        { name: 'Elizabeth', email: 'Elizabeth@foo.com', business: 'Elizabeth productions' },
-        { name: 'Fred', email: 'Fred@foo.com', business: 'Fred productions' },
-        { name: 'Gabriel', email: 'Gabriel@foo.com', business: 'Gabriel productions' },
-        { name: 'Holly', email: 'Holly@foo.com', business: 'Holly productions' },
-        { name: 'Ian', email: 'Ian@foo.com', business: 'Ian productions' },
-        { name: 'Janice', email: 'Janice@foo.com', business: 'Janice productions' },
-        { name: 'Kyle', email: 'Kyle@foo.com', business: 'Kyle productions' },
-    ];
+    export let cb: (s: string) => Promise<Array<Person>>;
 
     const dispatch = createEventDispatcher();
 
     let searchTerm = '';
     let possibles: Person[] = [];
     let loading = false;
-
-    const stall = (secs: number) => new Promise((r) => setTimeout(() => r(null), secs * 1000));
-
-    const getPersons = async (s: string) => {
-        if (s.length === 0) {
-            return [];
-        }
-        const lowerS = s.toLowerCase();
-
-        await stall(1);
-
-        return people.filter((n) => n.name.toLowerCase().includes(lowerS));
-    };
 
     let timeout: ReturnType<typeof setTimeout>;
     const keyUp = () => {
@@ -47,7 +17,7 @@
         }
         timeout = setTimeout(async () => {
             loading = true;
-            possibles = await getPersons(searchTerm).then((data) => data.slice(0, 5));
+            possibles = await cb(searchTerm).then((data) => data.slice(0, 5));
             loading = false;
         }, 200);
     };
@@ -72,7 +42,7 @@
     <div class="relative mt-2">
         <input
             id="combobox"
-            type="text"
+            type="search"
             class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             role="combobox"
             aria-controls="options"
@@ -80,13 +50,9 @@
             bind:value={searchTerm}
             on:keyup={keyUp}
         />
-        <button
-            type="button"
-            class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
-            on:click={clear}
-            disabled
-            >{#if loading}S{:else}X{/if}</button
-        >
+        {#if loading}
+            <span class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">S</span>
+        {/if}
 
         {#if possibles.length}
             <ul
@@ -116,13 +82,5 @@
             </ul>
         {/if}
     </div>
-
-    <p>Choose from:</p>
-    <ul class="ml-4 list-disc">
-        {#each people as person}
-            <li>
-                {person.name}
-            </li>
-        {/each}
-    </ul>
 </div>
+

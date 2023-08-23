@@ -35,8 +35,8 @@
         },
         {
             tailwindReference: 'https://tailwindui.com/components/application-ui/forms/comboboxes',
-            title: 'Comboboxes',
-            route: '/samples/comboboxes',
+            title: 'Autocomplete',
+            route: '/samples/autocomplete',
         },
         {
             tailwindReference:
@@ -48,6 +48,11 @@
             tailwindReference: 'https://tailwindcss.com/docs/ring-width',
             title: 'Ring width',
             route: '/samples/ring-width',
+        },
+        {
+            tailwindReference: 'https://tailwindcss.com/docs/hover-focus-and-other-states#indeterminate',
+            title: 'Indeterminant styles',
+            route: '/samples/indeterminant',
         },
     ];
 
