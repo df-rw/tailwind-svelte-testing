@@ -17,7 +17,7 @@
         }
         timeout = setTimeout(async () => {
             loading = true;
-            possibles = await cb(searchTerm).then((data) => data.slice(0, 5));
+            possibles = await cb(searchTerm);
             loading = false;
         }, 200);
     };
@@ -35,13 +35,9 @@
     };
 </script>
 
-<div class="m-4">
-    <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900"
-        >Choose a person</label
-    >
+<div>
     <div class="relative mt-2">
         <input
-            id="combobox"
             type="search"
             class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             role="combobox"
@@ -56,7 +52,7 @@
 
         {#if possibles.length}
             <ul
-                class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                class="absolute z-10 mt-1 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 id="options"
                 role="listbox"
             >
@@ -67,7 +63,7 @@
       -->
                 {#each possibles as p}
                     <li
-                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-indigo-600 hover:text-white"
+                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-indigo-600 hover:text-white hover:cursor-pointer"
                         id="option-0"
                         role="option"
                         tabindex="-1"
@@ -83,4 +79,3 @@
         {/if}
     </div>
 </div>
-

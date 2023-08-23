@@ -18,6 +18,8 @@
         { name: 'Kyle', email: 'Kyle@foo.com', business: 'Kyle productions' },
     ];
 
+    let chosen: Person;
+
     const getPersons = async (s: string) => {
         if (s.length === 0) {
             return [];
@@ -26,14 +28,24 @@
 
         await stall(1);
 
-        return people.filter((n) => n.name.toLowerCase().includes(lowerS));
+        return people.filter((n) => n.name.toLowerCase().includes(lowerS)).slice(0, 5);
     };
 
+    const handleChosen = (event: CustomEvent) => {
+        chosen = event.detail;
+    };
 </script>
 
-<Autocomplete cb={getPersons} />
 
-<div class="m-4">
+<div class="flex flex-col m-4 gap-4">
+    <Autocomplete cb={getPersons} on:chosen={handleChosen} />
+
+    {#if chosen}
+        <p>Chosen person</p>
+        <pre class="text-xs">
+{JSON.stringify(chosen, null, ' ')}
+        </pre>
+    {/if}
     <p>Choose from:</p>
     <ul class="ml-4 list-disc">
         {#each people as person}
