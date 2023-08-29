@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Autocomplete from './Autocomplete.svelte'
+    import Autocomplete from './Autocomplete.svelte';
     import type { Person } from './types';
 
     const stall = (secs: number) => new Promise((r) => setTimeout(() => r(null), secs * 1000));
@@ -36,8 +36,7 @@
     };
 </script>
 
-
-<div class="flex flex-col m-4 gap-4">
+<div class="m-4 flex flex-col gap-4">
     <Autocomplete cb={getPersons} on:chosen={handleChosen} />
 
     {#if chosen}

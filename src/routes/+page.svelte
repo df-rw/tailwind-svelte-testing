@@ -50,7 +50,8 @@
             route: '/samples/ring-width',
         },
         {
-            tailwindReference: 'https://tailwindcss.com/docs/hover-focus-and-other-states#indeterminate',
+            tailwindReference:
+                'https://tailwindcss.com/docs/hover-focus-and-other-states#indeterminate',
             title: 'Indeterminant styles',
             route: '/samples/indeterminant',
         },
@@ -64,6 +65,10 @@
         {
             title: 'Notification settings',
             route: '/tests/notification-settings',
+        },
+        {
+            title: 'a better autocomplete',
+            route: '/tests/a-better-autocomplete',
         },
     ];
 </script>

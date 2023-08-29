@@ -27,7 +27,7 @@
     let allocationOptionsOffice: string[] = [];
     $: officeAllocation = allocationOptionsOffice[0] ?? '';
 
-    const classFieldset = 'border border-solid border-gray-700 p-4'
+    const classFieldset = 'border border-solid border-gray-700 p-4';
     const classLegend = 'px-1';
 </script>
 

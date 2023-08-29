@@ -47,7 +47,10 @@
             on:keyup={keyUp}
         />
         {#if loading}
-            <span class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">S</span>
+            <span
+                class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none"
+                >S</span
+            >
         {/if}
 
         {#if possibles.length}
@@ -63,7 +66,7 @@
       -->
                 {#each possibles as p}
                     <li
-                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:bg-indigo-600 hover:text-white hover:cursor-pointer"
+                        class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 hover:cursor-pointer hover:bg-indigo-600 hover:text-white"
                         id="option-0"
                         role="option"
                         tabindex="-1"
