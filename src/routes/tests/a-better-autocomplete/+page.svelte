@@ -19,15 +19,19 @@
         { name: 'Janice', email: 'Janice@foo.com', business: 'Janice productions' },
         { name: 'Kyle', email: 'Kyle@foo.com', business: 'Kyle productions' },
     ];
-
     const getPersons = async (term: string) => {
         await stall(500);
-        const lowerTerm = term.toLowerCase();
+        const lowerTerm = term.trim().toLowerCase();
         return people.filter((p) => p.name.toLowerCase().includes(lowerTerm)).slice(0, MAX_RESULTS);
     };
-
     const formatPerson = (p: Person) => {
         return `${p.name} - ${p.email}<br /><span class="text-sm">${p.business}</span>`;
+    };
+    const labelPerson = (p: Person) => {
+        return p.name;
+    };
+    const gotPerson = (event: CustomEvent) => {
+        console.log({ person: event.detail });
     };
 
     const cars: Car[] = [
@@ -38,7 +42,7 @@
     ];
     const getCars = async (term: string) => {
         await stall(500);
-        const lowerTerm = term.toLowerCase();
+        const lowerTerm = term.trim().toLowerCase();
         return cars.filter(
             (c) =>
                 c.make.toLowerCase().includes(lowerTerm) ||
@@ -49,9 +53,18 @@
     const formatCar = (c: Car) => {
         return `${c.make} - ${c.model} - ${c.year}`;
     };
+    const labelCar = (c: Car) => formatCar(c);
+    const gotCar = (event: CustomEvent) => {
+        console.log({ car: event.detail });
+    };
 </script>
 
 <div class="m-4">
-    <Autocomplete search={getPersons} itemFormat={formatPerson} />
-    <Autocomplete search={getCars} itemFormat={formatCar} />
+    <Autocomplete
+        search={getPersons}
+        itemFormat={formatPerson}
+        label={labelPerson}
+        on:chosen={gotPerson}
+    />
+    <Autocomplete search={getCars} itemFormat={formatCar} label={labelCar} on:chosen={gotCar} />
 </div>

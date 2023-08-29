@@ -8,19 +8,23 @@
      * Turn the linter off and use callbacks for now, but this should
      * be revisited once the RFC makes it into the language.
      */
+    import { createEventDispatcher } from 'svelte';
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
     export let search: (s: string) => Promise<Array<any>>;
-    export let itemFormat: (p: any) => string;
+    export let label: (i: any) => string;
+    export let itemFormat: (i: any) => string;
+
+    const dispatch = createEventDispatcher();
 
     let searchTerm: string;
     let timeout: ReturnType<typeof setTimeout>;
     let loading = false;
-    let possibles: any[] | undefined = [];
+    let possibles: any[] | undefined = undefined;
     /* eslint-enable */
 
-    const keyUp = (t: string) => {
-        if (!t) {
+    const keyUp = () => {
+        if (!searchTerm) {
             possibles = undefined;
             return;
         }
@@ -31,37 +35,44 @@
 
         timeout = setTimeout(async () => {
             loading = true;
-            possibles = await search(t);
+            possibles = await search(searchTerm);
             loading = false;
         }, 200);
     };
 
-    $: keyUp(searchTerm);
+    const select = (i: any) => {
+        // eslint-enabled @typescript-eslint/no-explicit-any
+        dispatch('chosen', i);
+        searchTerm = label(i);
+        possibles = undefined;
+    };
 </script>
 
 <p>
     {#if loading}loading{:else}idle{/if}
 </p>
 
-<div>
-    <input
-        type="search"
-        role="combobox"
-        aria-controls="options"
-        aria-expanded="false"
-        bind:value={searchTerm}
-    />
-</div>
+<div class="relative">
+    <input type="search" role="combobox" bind:value={searchTerm} on:keyup={keyUp} />
 
-{#if possibles}
-    {#if possibles.length > 0}
-        <ul>
-            {#each possibles as p}
-                <!-- eslint-disable svelte/no-at-html-tags -->
-                <li>{@html itemFormat(p)}</li>
-            {/each}
-        </ul>
-    {:else}
-        <p>no results</p>
+    {#if possibles}
+        {#if possibles.length > 0}
+            <ul
+                class="absolute z-10 mt-1 overflow-auto border border-black bg-white"
+                role="listbox"
+            >
+                {#each possibles as p}
+                    <!-- eslint-disable svelte/no-at-html-tags -->
+                    <li
+                        class="relative py-2 pl-3 pr-9 hover:cursor-pointer"
+                        on:click={() => select(p)}
+                    >
+                        {@html itemFormat(p)}
+                    </li>
+                {/each}
+            </ul>
+        {:else}
+            <p>no results</p>
+        {/if}
     {/if}
-{/if}
+</div>
