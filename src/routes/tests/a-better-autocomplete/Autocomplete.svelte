@@ -69,7 +69,7 @@
             >
                 {#if possibles.length > 0}
                     {#each possibles as p}
-                        <li class="relative">
+                        <li class="relative hover:bg-black hover:text-white">
                             <!-- eslint-disable svelte/no-at-html-tags -->
                             <button type="button" class="w-full text-left pl-2 py-2" on:click|preventDefault={() => select(p)}
                                 >{@html itemFormat(p)}</button
