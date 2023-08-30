@@ -24,10 +24,10 @@
         const lowerTerm = term.trim().toLowerCase();
         return people.filter((p) => p.name.toLowerCase().includes(lowerTerm)).slice(0, MAX_RESULTS);
     };
-    const formatPerson = (p: Person) => {
-        return `${p.name} - ${p.email}<br /><span class="text-sm">${p.business}</span>`;
+    const itemFormatPerson = (p: Person) => {
+        return `<span>${p.name} - ${p.email}</span><br /><span class="text-sm">${p.business}</span>`;
     };
-    const labelPerson = (p: Person) => {
+    const chosenFormatPerson = (p: Person) => {
         return p.name;
     };
     const gotPerson = (event: CustomEvent) => {
@@ -50,21 +50,26 @@
                 c.year.toString().includes(lowerTerm)
         );
     };
-    const formatCar = (c: Car) => {
+    const itemFormatCar = (c: Car) => {
         return `${c.make} - ${c.model} - ${c.year}`;
     };
-    const labelCar = (c: Car) => formatCar(c);
+    const chosenFormatCar = (c: Car) => itemFormatCar(c);
     const gotCar = (event: CustomEvent) => {
         console.log({ car: event.detail });
     };
 </script>
 
-<div class="m-4">
+<div class="m-4 w-1/2">
     <Autocomplete
         search={getPersons}
-        itemFormat={formatPerson}
-        label={labelPerson}
+        itemFormat={itemFormatPerson}
+        chosenFormat={chosenFormatPerson}
         on:chosen={gotPerson}
     />
-    <Autocomplete search={getCars} itemFormat={formatCar} label={labelCar} on:chosen={gotCar} />
+    <Autocomplete
+        search={getCars}
+        itemFormat={itemFormatCar}
+        chosenFormat={chosenFormatCar}
+        on:chosen={gotCar}
+    />
 </div>

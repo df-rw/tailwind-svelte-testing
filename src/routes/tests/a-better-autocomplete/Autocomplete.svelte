@@ -12,8 +12,8 @@
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
     export let search: (s: string) => Promise<Array<any>>;
-    export let label: (i: any) => string;
     export let itemFormat: (i: any) => string;
+    export let chosenFormat: (i: any) => string;
 
     const dispatch = createEventDispatcher();
 
@@ -23,7 +23,7 @@
     let possibles: any[] | undefined = undefined;
     /* eslint-enable */
 
-    const keyUp = () => {
+    const handleInput = () => {
         if (!searchTerm) {
             possibles = undefined;
             return;
@@ -36,16 +36,23 @@
         timeout = setTimeout(async () => {
             loading = true;
             possibles = await search(searchTerm);
+            if (searchTerm === '') {
+                possibles = undefined;
+            }
             loading = false;
         }, 200);
     };
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const select = (i: any) => {
-        // eslint-enabled @typescript-eslint/no-explicit-any
         dispatch('chosen', i);
-        searchTerm = label(i);
+        searchTerm = chosenFormat(i);
         possibles = undefined;
     };
+
+    $: if (searchTerm === '') {
+        possibles = undefined;
+    }
 </script>
 
 <p>
@@ -53,26 +60,25 @@
 </p>
 
 <div class="relative">
-    <input type="search" role="combobox" bind:value={searchTerm} on:keyup={keyUp} />
+    <input type="search" class="w-full rounded-md" bind:value={searchTerm} on:input={handleInput} />
 
     {#if possibles}
-        {#if possibles.length > 0}
             <ul
-                class="absolute z-10 mt-1 overflow-auto border border-black bg-white"
+                class="absolute w-full z-10 mt-1 overflow-auto border border-black rounded-md bg-white"
                 role="listbox"
             >
-                {#each possibles as p}
-                    <!-- eslint-disable svelte/no-at-html-tags -->
-                    <li
-                        class="relative py-2 pl-3 pr-9 hover:cursor-pointer"
-                        on:click={() => select(p)}
-                    >
-                        {@html itemFormat(p)}
-                    </li>
-                {/each}
+                {#if possibles.length > 0}
+                    {#each possibles as p}
+                        <li class="relative">
+                            <!-- eslint-disable svelte/no-at-html-tags -->
+                            <button type="button" class="w-full text-left pl-2 py-2" on:click|preventDefault={() => select(p)}
+                                >{@html itemFormat(p)}</button
+                            >
+                        </li>
+                    {/each}
+                {:else}
+                    <li class="relative pl-2 py-2">No results</li>
+                {/if}
             </ul>
-        {:else}
-            <p>no results</p>
-        {/if}
     {/if}
 </div>
