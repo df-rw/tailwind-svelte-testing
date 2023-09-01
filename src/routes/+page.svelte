@@ -70,6 +70,14 @@
             title: 'a better autocomplete',
             route: '/tests/a-better-autocomplete',
         },
+        {
+            title: 'grid and flex',
+            route: '/tests/grid-flex',
+        },
+        {
+            title: 'Svelte transitions',
+            route: '/tests/transitions',
+        }
     ];
 </script>
 
